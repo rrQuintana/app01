@@ -8,7 +8,11 @@ app.get("/", (req, res)=>{
   console.log(`Peticion a: ${req.url}`)
   res.send("Estás en raiz")
 })
-
+app.get("/mensaje", (req, res)=>{
+    console.log(`Peticion a: ${req.url}`)
+    res.send("Estás en mensaje")
+  })
+  
 ///Server starts on port 3000 at localhost 127.0.0.1
 app.listen(port, (error) => {
   if (error) console.log(`Something went wrong ${error}`);
