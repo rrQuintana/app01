@@ -3,18 +3,13 @@ const express = require("express");
 const app = express();
 const port = "3000";
 
-//Inicia una ruta para raiz (/) con un método get
-app.get("/", (req, res)=>{
-  console.log(`Peticion a: ${req.url}`)
-  res.send("Estás en raiz")
-})
-app.get("/mensaje", (req, res)=>{
-    console.log(`Peticion a: ${req.url}`)
-    res.send("Estás en mensaje")
-  })
-  
-///Server starts on port 3000 at localhost 127.0.0.1
-app.listen(port, (error) => {
-  if (error) console.log(`Something went wrong ${error}`);
-  console.log(`Server started on port ${port}`);
+var bodyParser = require("body-parser")
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+require("./routes/routes")(app);
+
+app.listen(port, (err) => {
+  if (err) console.error(err);
+  console.log("server listening on port " + port);
 });
